@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Admin View</title>
+</head>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #105469;
+  font-family: 'Open Sans', sans-serif;
+}
+table {
+  background: #012B39;
+  border-radius: 0.25em;
+  border-collapse: collapse;
+  width: 100%;
+}
+span{
+  color:#fff;
+}
+h1{
+  color:#fff;
+  text-shadow: 4px 4px #012B39;
+}
+th {
+  border-bottom: 1px solid #364043;
+  color: #E2B842;
+  font-size: 0.85em;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  text-align: left;
+}
+td {
+  color: #fff;
+  font-weight: 400;
+  padding: 0.65em 1em;
+}
+@media (max-width: 500px)
+{
+  td{
+   padding-left: 0;
+   padding-right: 0;
+  }
+}
+tbody tr {
+  transition: background 0.25s ease;
+}
+tbody tr:hover {
+  background: #014055;
+}
+a{
+  color: #fff;
+  text-decoration: underline;
+}
+a:hover{
+  color: #fff;
+}
+.alink{
+  color: #ffdb4d;
+  text-decoration: none;
+}
+.alink:hover{
+  color: #ffeb99;
+  text-decoration: none;
+}
+.alert{
+  border: 0;
+  background-color: #012B39;
+}
+#chart{
+  font-size: 150%;
+}
+</style>
+<body>
+  <!-- displaying the list of registered users -->
+  <div class="alert alert-info" role="alert">
+    <a class="alink" href="/admin" >Log Out</a> </div>
+  <h1 style="text-align: center;">Registered Users</h1>
+  <a id="chart" href="/newroute" style="float:right">View Chart</a>
+<table>
+  <tr>
+    <th>Register ID</th>
+    <th>Date</th>
+    <th>Name</th>
+  </tr>
+    <% items.forEach(function(image) { %>
+      <tr>
+        <!-- provided with hyperlink to view individual registration details -->
+        <td><a class="alink" href="/details/<%= image._id %>" name="id"><%= image._id %></a></td>
+        <td><%= image.date %></td>
+        <td><%= image.name %></td>
+      </tr>
+    <% }) %>
+</table>
+</body>
+</html>

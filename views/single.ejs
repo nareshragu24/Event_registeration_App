@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Single</title>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #105469;
+  font-family: 'Open Sans', sans-serif;
+}
+table {
+  background: #012B39;
+  border-radius: 0.25em;
+  border-collapse: collapse;
+  width: 100%;
+}
+h1{
+  color:#fff;
+  text-shadow: 4px 4px #012B39;
+}
+td {
+  color: #fff;
+  font-weight: 400;
+  padding: 0.65em 1em;
+}
+@media (max-width: 500px)
+{
+  td{
+   padding-left: 0;
+   padding-right: 0;
+  }
+}
+tbody tr {
+  transition: background 0.25s ease;
+}
+tbody tr:hover {
+  background: #014055;
+}
+a{
+  color: #fff;
+  text-decoration: underline;
+}
+a:hover{
+  color: #fff;
+}
+.alert{
+  border: 0;
+  background-color: #012B39;
+}
+.alink{
+  color: #ffdb4d;
+  text-decoration: none;
+}
+.alink:hover{
+  color: #ffeb99;
+  text-decoration: none;
+}
+img{
+    width:100%;
+    height: 100%;
+    }
+    </style>
+  </head>
+  <body>
+    <!-- Individual registration details on clicking the hyperlink in AdminView.ejs -->
+    <div class="alert alert-info" role="alert">
+      <a class="alink" href="/adminview" >Go back</a> </div>
+    <h1 style="text-align: center;">USER DETAILS</h1>
+    <div>
+      <% users.forEach(function(image) { %>
+      <div>
+          <div>
+              <div>
+                <table>
+                  <tr>
+                    <td class="alink">Id</td>
+                    <td><%= image.id %></td>
+                  </tr>
+                  <tr>
+                    <td class="alink">Name</td>
+                    <td><%= image.name %></td>
+                  </tr>
+                  <tr>
+                    <td class="alink">Email</td>
+                    <td><%= image.email %></td>
+                  </tr>
+                  <tr>
+                    <td class="alink">Tickets</td>
+                    <td><%= image.ticket %></td>
+                  </tr>
+                  <tr>
+                    <td class="alink">Registration Type</td>
+                    <td><%= image.Regtype %></td>
+                </tr>
+                <tr>
+                  <td class="alink">Phone Number</td>
+                  <td><%= image.phone %></td>
+              </tr>
+              <tr>
+                <td class="alink">Id Card</td>
+                <td><img src="data:image/<%=image.img.contentType%>;base64,
+                  <%=image.img.data.toString('base64')%>"></td>
+            </tr>
+                </table>
+              </div>
+          </div>
+      </div>
+      <% }) %>
+    </div>
+  </body>
+</html>

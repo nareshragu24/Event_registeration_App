@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Registration Statistics</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+
+.alink{
+  color: #ffdb4d;
+  text-decoration: none;
+}
+.alink:hover{
+  color: #ffeb99;
+  text-decoration: none;
+}
+
+.graph {
+	margin-bottom:1em;
+  font:normal 100%/150% arial,helvetica,sans-serif;
+}
+
+.graph caption {
+	font:bold 150%/120% arial,helvetica,sans-serif;
+	padding-bottom:0.33em;
+}
+
+.graph tbody th {
+	text-align:right;
+}
+
+@supports (display:grid) {
+
+	@media (min-width:100px) {
+		a{
+  color: #fff;
+  text-decoration: underline;
+}
+a:hover{
+  color: #fff;
+}
+.alert{
+  border: 0;
+  background-color: #012B39;
+}
+		.graph {
+			display:block;
+      width:100%;
+      height:400px;
+		}
+
+		.graph caption {
+			display:block;
+		}
+
+		.graph thead {
+			display:none;
+		}
+
+		.graph tbody {
+			position:relative;
+			display:grid;
+			grid-template-columns:repeat(auto-fit, minmax(2em, 1fr));
+			column-gap:2.5%;
+			align-items:end;
+			height:100%;
+			margin:3em 0 1em 2.8em;
+			padding:0 1em;
+			border-bottom:2px solid rgba(0,0,0,0.5);
+			background:repeating-linear-gradient(
+				180deg,
+				rgba(170,170,170,0.7) 0,
+				rgba(170,170,170,0.7) 1px,
+				transparent 1px,
+				transparent 20%
+			);
+		}
+
+		.graph tbody:before,
+		.graph tbody:after {
+			position:absolute;
+			left:-3.2em;
+			width:2.8em;
+			text-align:right;
+			font:bold 80%/120% arial,helvetica,sans-serif;
+		}
+
+/* Change the max limit of the bar graph here */
+		.graph tbody:before {
+			content:"20";
+			top:-0.6em;
+		}
+
+		.graph tbody:after {
+			content:"0";
+			bottom:-0.6em;
+		}
+
+		.graph tr {
+			position:relative;
+			display:block;
+		}
+
+		.graph tr:hover {
+			z-index:999;
+		}
+
+		.graph th,
+		.graph td {
+			display:block;
+			text-align:center;
+		}
+
+		.graph tbody th {
+			position:absolute;
+			top:-3em;
+			left:0;
+			width:100%;
+			font-weight:normal;
+			text-align:center;
+      white-space:nowrap;
+			text-indent:0;
+			transform:rotate(-45deg);
+		}
+
+		.graph tbody th:after {
+			content:"";
+		}
+
+		#a1 {
+			width:100%;
+			height:100%;
+			background:#9900cc	;
+			border-radius:0.5em 0.5em 0 0;
+			transition:background 0.5s;
+		}
+		#a2 {
+			width:100%;
+			height:100%;
+			background:#33cc33	;
+			border-radius:0.5em 0.5em 0 0;
+			transition:background 0.5s;
+		}
+
+		#a3 {
+			width:100%;
+			height:100%;
+			background:#ffff00	;
+			border-radius:0.5em 0.5em 0 0;
+			transition:background 0.5s;
+		}
+		#a4 {
+			width:100%;
+			height:100%;
+			background:#6600ff	;
+			border-radius:0.5em 0.5em 0 0;
+			transition:background 0.5s;
+		}
+		#a5 {
+			width:100%;
+			height:100%;
+			background:#ff1a75	;
+			border-radius:0.5em 0.5em 0 0;
+			transition:background 0.5s;
+		}
+
+		.graph tr:hover td {
+			opacity:0.7;
+		}
+
+		.graph td span {
+			overflow:hidden;
+			position:absolute;
+			left:50%;
+			top:50%;
+			width:0;
+			padding:0.5em 0;
+			margin:-1em 0 0;
+			font:normal 85%/120% arial,helvetica,sans-serif;
+/* 			background:white; */
+/* 			box-shadow:0 0 0.25em rgba(0,0,0,0.6); */
+			font-weight:bold;
+			opacity:0;
+			transition:opacity 0.5s;
+      color:white;
+		}
+
+		.toggleGraph:checked + table td span,
+		.graph tr:hover td span {
+			width:4em;
+			margin-left:-2em; /* 1/2 the declared width */
+			opacity:1;
+		}
+		body {
+  background: #105469;
+  font-family: 'Open Sans', sans-serif;
+  color:white;
+}
+h2{
+  color:#fff;
+  text-shadow: 4px 4px #012B39;
+  text-align: center;
+  text-transform: uppercase	;
+}
+	} /* min-width:32em */
+} /* grid only */
+</style>
+</head>
+  <body>
+	<div class="alert alert-info" role="alert">
+		<a  href="/adminview" class="alink">Go back</a> </div>
+    <table class="graph">
+	<h2>Registeration Statistics</h2>
+	<thead>
+		<tr>
+			<th scope="col">Item</th>
+			<th scope="col">Percent</th>
+		</tr>
+	</thead><tbody>
+    <!-- Alter the bar values when the max limit is changed -->
+		<tr style="height:<%= self*5 %>%"><!--bar value-->
+			<th scope="row">Self</th><!--attributes-->
+			<td id="a1"><span><%= self %></span></td><!--value-->
+		</tr>
+		<tr style="height:<%= group*5 %>%"><!--bar value-->
+			<th scope="row">Group</th>
+			<td id="a2"><span><%= group %></span></td>
+		</tr>
+		<tr style="height:<%= coporate*5 %>%"><!--bar value-->
+			<th scope="row">Corporate</th>
+			<td id="a3"><span><%= coporate %></span></td>
+		</tr>
+		<tr style="height:<%= others*5 %>%"><!--bar value-->
+			<th scope="row">Others</th>
+			<td id="a4"><span><%= others %></span></td>
+		</tr>
+	</tbody>
+</table>
+  </body>
+</html>

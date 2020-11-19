@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Registration</title>
+<style>
+body {
+  background: #105469;
+  font-family: 'Open Sans', sans-serif;
+}
+h2{
+  color:#ffdb4d;
+  text-align: center;
+}
+h4,h5,h1,p{
+  color:#fff;
+  text-align: center;
+}
+.alink{
+  color: #ffdb4d;
+  text-decoration: none;
+}
+.alink:hover{
+  color: #ffeb99;
+  text-decoration: none;
+}
+</style>
+</head>
+<body>
+    <a class="alink" href="/" >Submit Another Response</a> </div>
+  <!-- The registration id visible for the user -->
+  <h4>Your Registration ID</h4>
+  <div>
+    <% docs.forEach(function(image) { %>
+    <div>
+            <div>
+                <h2><%= image._id %></h2>
+            </div>
+    </div>
+    <% }) %>
+</div>
+<h1>Thank you For Registering our event!</h1>
+<p>Please Note your Registration ID</p>
+</body>
+</html>
